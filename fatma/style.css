@@ -1,0 +1,133 @@
+/*
+Theme Name: DeskSpace
+Theme URI: http://freethemelayouts.com/
+Description: Designed by <a href="http://freethemelayouts.com">FTL</a>.<br /> This work is licensed <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 License.</a> This means you may use it and make any changes you like. However, credit links must remain on footer for legal use.
+Version: 1
+Author: FreeThemeLayout/DreamTemplate
+Author URI: http://www.freethemelayouts.com/
+*/
+
+
+
+body, h1, h2, h3, h4, h5, h6, address, blockquote, dd, dl, hr, p, form{
+	margin:0;
+	padding:0;
+}
+h2, h3, h4, h5, h6{ 
+	font-weight: normal;
+	font-family: georgia;
+	font-size: 18px; 
+	color: #549900;
+}
+a{
+	font-family: georgia;
+	color: #fff;
+	text-decoration: none;
+	font-size: 17px;
+
+}
+p{line-height:100%;}
+a:hover{
+	color: #fff;
+	
+}
+@font-face {
+    font-family: TitleFont;
+    src: url(ae_Sharjah.ttf);
+}
+@font-face {
+    font-family: MenuFont;
+    src: url(ae_Sharjah.ttf);
+}
+body{
+	font-family: arial, helvetica, sans-serif;
+	font-size: 16px;
+	background:#e2e2e2;
+	color: #333; 
+	
+}
+.cell
+{
+	//height:300px;
+	width:800px;
+	overflow:hidden;
+	margin: 0 auto;
+	
+	}
+
+.cell table
+{
+	/*border:2px solid black;*/
+	width:90%;
+	margin:5px auto;
+	border-radius: 10px;
+	}
+.cell table td 
+{
+	background-color:#000037;
+	border:1px solid #aaa;
+	border-radius:3px;
+	overflow:hidden;
+	padding:2px 5px;
+	color: #ffff24;
+	font-size: 16px;
+	}
+.cell table td table td
+{
+
+	border:0px;}
+.cell table td input[type="text"],.cell table td input[type="password"],.cell table td textarea
+{
+	background-color:#fff;
+	border:1px solid #aaa;
+	border-radius:2px;
+	width: 250px;
+	height: 25px;
+	font-size: 16px;
+	color: #000;
+	}
+.cell table td textarea
+{
+	height: 80px;
+	}
+.cell table td input[type="text"]:hover,.cell table td input[type="password"]:hover ,.cell table td textarea:hover
+{
+	box-shadow: 1px 1px 5px grey;
+	background-color:#D1D0CE;
+	border:1px solid #9F000F;
+	}
+. table td select
+{
+	background-color:#fff;
+	border:0px;
+	border-radius:2px;
+	width:300px;
+	}
+
+#submit td  
+      {
+        background-color:#c36000;
+        border:0px;
+       }
+#submit input , #upload  
+      {
+        margin:5px;
+        color: #9F000F;
+        background-color:#fff;
+        border:1px solid #9F000F;
+        border-radius:5px;
+        width:80px;
+        font-family:arial;
+        font-size:16px;
+    	float:left;
+      }
+        #submit input:hover
+      {
+         box-shadow: 2px 5px 5px #000037;
+         
+      }
+	 #upload:hover
+      {
+         box-shadow: 3px 5px 5px #aaa;
+         
+      }
