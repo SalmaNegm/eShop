@@ -1,12 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
-          		include '../../classes/category.php';
-          		$category=new Category();
-          		$data=$category->getCategories();
+  session_start();
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>admin category</title>
+<title>control panel - products</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
 <link rel="stylesheet" type="text/css" href="../../style.css" />
@@ -15,7 +13,7 @@
 <![endif]-->
 <script src="../../jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="../../js/boxOver.js"></script>
-<script  type="text/javascript" src="../../js/adminCategory.js"></script>
+<script  type="text/javascript" src="../../js/adminEditProduct.js"></script>
 </head>
 <body>
 <div id="main_container">
@@ -41,61 +39,56 @@
     </div>
     <!-- end of left content -->
     <div class="center_content">
-      <!-- ............................. ADD category ....................................... -->
-      <form method="post" action="">
+      <!-- ............................. ADD product ....................................... -->
+      <form method="post" action="adminProduct_server.php" enctype='multipart/form-data'>
         <fieldset>
           <legend>ADD</legend>
-          <span class='label'>Name:</span>  <input type="text" name="categoryName" class="newsletter_input"/> <span id='error' class='error'></span>
-          <input type="submit" name="okAdd" value="ADD" class="adminButton"/>
+            <table>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('insert_pName', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Name: </span></td>
+                <td><input type="text" name='insert_pName' class="newsletter_input"/></td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('cNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Category: </span></td>
+                <td>
+                  <select id='cNames_menu_edit' name='cNames_menu_edit'>
+                    <?php
+                      include '../../classes/category.php';
+                      $category=new Category();
+                      $cData=$category->getCategories();
+                      foreach ($cData as $key => $cat)
+                      {
+                       echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
+                      }
+                    ?>
+                </select>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('scNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Subcategory: </span></td>
+                <td><select id='scNames_menu_edit' name='scNames_menu_edit'></select></td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('insert_pPrice', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Price: </span></td>
+                <td><input type="number" name='insert_pPrice' class="newsletter_input"/></td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('insert_pQuantity', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Quantity: </span></td>
+                <td><input type="number" name='insert_pQuantity' class="newsletter_input"/></td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('insert_pImage', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Image: </span></td>
+                <td><input type="file" name='insert_pImage' id='insert_pImage'/></td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('insert_pDesc', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Description: </span></td>
+                <td><textarea name='insert_pDesc' class="newsletter_input" rows='5' cols='50'></textarea></td>
+              </tr>
+            </table>
+          <input type="submit" name="insert_ok" value="ADD" class="adminButton"/>
         </fieldset>
       </form>
-       <!-- ............................. dispaly categories ....................................... -->
-      <?php
-      // include 'category.php';
-      $categoryObj = new Category;
-      $categories = $categoryObj->getCategories();
-      echo "<table class='adminTable'>";
-      echo "<tr><th>category name</th><th>actions</th></tr>";
-      foreach ($categories as $key => $category) 
-      {
-          echo "<tr>";
-          echo "<td class='cName_col'>".$category['cName']."</td>";
-          echo "<td>";
-      ?>
-          
-        <a class='delete' href="" value=<?php echo $category['cID'] ?>>delete</a></td>
-        <?php
-
-          echo "</td>";
-        echo "</tr>";
-      }
-      echo "</table>";
-      ?>
-       <!-- ............................. edit category ....................................... -->
-      <form method="post" action="">
-        <fieldset id='editField'>
-          <legend>EDITE</legend>
-          <input type="hidden" id='hiddenCatID'/>
-          <table width="100%">
-          <tr>
-          <td>
-          <span class='label'>Category:</span> 
-          <select name="cNames_menu" width='20%'>
-          	<?php
-          		foreach ($data as $key => $cat) {
-          			echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
-          		}
-          	?>
-          </select> </td>
-          <td><span class='label'>New Name:</span>  <input type="text" id="categoryNewName" class="newsletter_input"/></td>
-          </tr>
-          </table>
-          
-          <span id='error' class='error'></span>
-          <input type="button" name="okEdit" value="DONE" class="adminButton"/>
-        </fieldset>
-      </form>
-
     </div>
     <!-- end of center content -->
     <div class="right_content">
@@ -144,3 +137,6 @@
 <!-- end of main_container -->
 </body>
 </html>
+<?php
+  unset($_SESSION['errors']);
+?>

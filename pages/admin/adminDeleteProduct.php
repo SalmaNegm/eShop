@@ -1,12 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
-          		include '../../classes/category.php';
-          		$category=new Category();
-          		$data=$category->getCategories();
+  session_start();
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>admin category</title>
+<title>control panel - products</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
 <link rel="stylesheet" type="text/css" href="../../style.css" />
@@ -15,7 +13,7 @@
 <![endif]-->
 <script src="../../jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="../../js/boxOver.js"></script>
-<script  type="text/javascript" src="../../js/adminCategory.js"></script>
+<script  type="text/javascript" src="../../js/adminDeleteProduct.js"></script>
 </head>
 <body>
 <div id="main_container">
@@ -41,61 +39,74 @@
     </div>
     <!-- end of left content -->
     <div class="center_content">
-      <!-- ............................. ADD category ....................................... -->
-      <form method="post" action="">
+      <!-- ............................. Delete product ....................................... -->
+      <form method="post" action="adminEditProduct_server.php" enctype='multipart/form-data'>
+        <input type="hidden" value='' id='pID' id='hidden_pID'/>
         <fieldset>
-          <legend>ADD</legend>
-          <span class='label'>Name:</span>  <input type="text" name="categoryName" class="newsletter_input"/> <span id='error' class='error'></span>
-          <input type="submit" name="okAdd" value="ADD" class="adminButton"/>
+          <legend>DELETE</legend>
+            <table>
+            <tr><td colspan="2"><span id="searchError" class='error'></span></td></tr>
+              <tr>
+                <td><span class='label'>Product Name: </span></td>
+                <td>
+                  <input type="text" list="browsers" id='tt' name="browser"/>
+                  <datalist id="browsers" autocomplete="off">
+                    <?php
+                      include '../../classes/products.php';
+                      $products=new product();
+                      $allPro=$products->products();
+                      foreach ($allPro as $key => $pro)
+                      {
+                        echo "<option value='".$pro['pName']."' data-pid='".$pro['pID']."'>".$pro['pID']."</option>";
+                      }
+                    ?>
+
+                  </datalist>
+                  <input type="button" id="search_btn_delete" value="search"/>
+                  </td>
+              </tr>
+              </table>
+              <div id='viewer'>
+              <table>
+              
+              <tr><td colspan="2"><hr/></td></tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('insert_pName', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Name: </span></td>
+                <td><sapn id='insert_pName'></sapn></td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('cNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Category: </span></td>
+                <td>
+                  <span id='cNames_menu_edit'></span>
+                </td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('scNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Subcategory: </span></td>
+                <td><sapn id='scNames_menu_edit'></span></td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('insert_pPrice', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Price: </span></td>
+                <td><sapn id='insert_pPrice' ></sapn></td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('insert_pQuantity', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Quantity: </span></td>
+                <td><span id='insert_pQuantity' ></span></td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('insert_pImage', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Image: </span></td>
+                <td><sapn name='insert_pImage' id='insert_pImage'></sapn><img id='dispImg' width='100px' height="100px" /></td>
+              </tr>
+              <tr>
+                <td><span class='label' style="color:<?php if(in_array('insert_pDesc', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Description: </span></td>
+                <td><span id='insert_pDesc' ></span></td>
+              </tr>
+              
+            </table>
+
+          <input type="submit" name="delete_ok" value="DELETE" class="adminButton"/>
+          </div> <!-- end of viewer div -->
         </fieldset>
       </form>
-       <!-- ............................. dispaly categories ....................................... -->
-      <?php
-      // include 'category.php';
-      $categoryObj = new Category;
-      $categories = $categoryObj->getCategories();
-      echo "<table class='adminTable'>";
-      echo "<tr><th>category name</th><th>actions</th></tr>";
-      foreach ($categories as $key => $category) 
-      {
-          echo "<tr>";
-          echo "<td class='cName_col'>".$category['cName']."</td>";
-          echo "<td>";
-      ?>
-          
-        <a class='delete' href="" value=<?php echo $category['cID'] ?>>delete</a></td>
-        <?php
-
-          echo "</td>";
-        echo "</tr>";
-      }
-      echo "</table>";
-      ?>
-       <!-- ............................. edit category ....................................... -->
-      <form method="post" action="">
-        <fieldset id='editField'>
-          <legend>EDITE</legend>
-          <input type="hidden" id='hiddenCatID'/>
-          <table width="100%">
-          <tr>
-          <td>
-          <span class='label'>Category:</span> 
-          <select name="cNames_menu" width='20%'>
-          	<?php
-          		foreach ($data as $key => $cat) {
-          			echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
-          		}
-          	?>
-          </select> </td>
-          <td><span class='label'>New Name:</span>  <input type="text" id="categoryNewName" class="newsletter_input"/></td>
-          </tr>
-          </table>
-          
-          <span id='error' class='error'></span>
-          <input type="button" name="okEdit" value="DONE" class="adminButton"/>
-        </fieldset>
-      </form>
-
     </div>
     <!-- end of center content -->
     <div class="right_content">
@@ -144,3 +155,6 @@
 <!-- end of main_container -->
 </body>
 </html>
+<?php
+  unset($_SESSION['errors']);
+?>

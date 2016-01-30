@@ -1,0 +1,14 @@
+
+	<div class="title_box">Controls</div>
+	<ul class="left_menu">
+		<li class="odd"><a href="adminCategories.php">Categories</a></li>
+		<li class="even"><a href="adminSubcategories.php">Subcategories</a></li>
+		<li class="odd"><a href="adminProducts.php">Products</a></li>
+		<ul>
+			<li class="sub_odd"><a  href="adminProducts.php">Add New</a></li>
+			<li class="sub_odd"><a href="adminEditProduct.php">Edit</a></li>
+			<li class="sub_odd"><a href="">Delete</a></li>
+		</ul>
+		<li class="even"><a href="#">Customer's Profile</a></li>
+		<li class="odd"><a href="#">Customer's Order History</a></li>
+	</ul>

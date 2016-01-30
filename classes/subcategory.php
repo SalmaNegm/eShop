@@ -74,6 +74,18 @@ class Subcategory
 		return $data;
 	}
 
+	function getCorrespondingCat()
+	{
+		$query="select c.cID,c.cName,sc.scID,sc.scName from categories as c , subcategories as sc where c.cID = sc.cID order by c.cID";
+		$result=mysqli_query(self::$conn,$query);
+		$data = [];
+		while($row = mysqli_fetch_assoc($result)) 
+		{
+			$data[] = $row;
+		}
+		return $data;
+	}
+
 }
 
 ?>

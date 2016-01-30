@@ -1,5 +1,6 @@
 $(function()
 {
+	
 	// ------------------------------------------------------ insert ----------------------------------------------------
 	$('input[name=okAdd]').on("click",function(event){
 		event.preventDefault();
@@ -16,7 +17,7 @@ $(function()
 				if(exp.test(response))
 				{
 					$(this).addClass("success");//not executing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-					$('#error').text('');
+					$('#error:first').text('');
 					$('input[name=categoryName]').val('');
 					$('.adminTable').append("<tr><td class='cName_col'>"+d.categoryName+"</td><td><a class='delete' href='' value="+response+">delete</a></td></tr>");
 					$('select[name=cNames_menu]').append("<option value='"+response+"'>"+d.categoryName+"</option>");
@@ -33,6 +34,7 @@ $(function()
 		});
 	
 	});
+	
 	// ------------------------------------------------------ delete ----------------------------------------------------
 	$('body').delegate('.delete',"click",function(event){
 		event.preventDefault();
@@ -61,6 +63,12 @@ $(function()
 	});
 	// ------------------------------------------------------ update ----------------------------------------------------
 	$('body').delegate('input[name=okEdit]',"click",function(event){
+		if($.trim($('select[name=cNames_menu] option:selected').text())=='')
+		{
+			$('#categoryNewName').val('');
+			$('table ~ #error').text('no categories to update');
+			return 0;
+		}
 		event.preventDefault();
 		d={};
 		d.newCName=$.trim($('#categoryNewName').val());

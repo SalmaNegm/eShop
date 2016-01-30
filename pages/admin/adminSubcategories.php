@@ -15,47 +15,17 @@
 <![endif]-->
 <script src="../../jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="../../js/boxOver.js"></script>
-<script  type="text/javascript" src="../../js/adminCategory.js"></script>
+<script  type="text/javascript" src="../../js/adminSubcategory.js"></script>
 </head>
 <body>
 <div id="main_container">
-  <div id="header">
-  	<img src="../../images/banner.png" width="100%" height="100%" />
-    <div class="top_right">
-      
-      <!-- <div class="big_banner"> <a href="#"><img src="../../images/img.jpg" alt="" border="0" /></a> </div> -->
-    </div>
-    <!-- <div id="logo"> <a href="#"><img src="../../images/logo.png" alt="" border="0" width="182" height="85" /></a> </div> -->
-  </div>
+  <?php include '../banner.php'; ?>
   <div id="main_content">
-    <div id="menu_tab">
-      <ul class="menu">
-       <li><a href="#" class="nav"> Home </a></li>
-        <li class="divider"></li>
-        <li><a href="#" class="nav">Products</a></li>
-        <li class="divider"></li>
-        <li><a href="#" class="nav">Specials</a></li>
-        <li class="divider"></li>
-        <li><a href="#" class="nav">My account</a></li>
-        <li class="divider"></li>
-        <li><a href="adminCategories.php" class="nav">Control Pannel</a></li>
-        <li class="divider"></li>
-        <li><a href="contact.html" class="nav">Contact Us</a></li>
-        <li class="divider"></li>
-        <li><a href="details.html" class="nav">Details</a></li>
-      </ul>
-    </div>
+    <?php include 'navigation.php'; ?>
     <!-- end of menu tab -->
     <div class="crumb_navigation"> Navigation: <span class="current">Home</span> </div>
     <div class="left_content">
-      <div class="title_box">Controls</div>
-      <ul class="left_menu">
-        <li class="odd"><a href="adminCategories.php">Categories</a></li>
-        <li class="even"><a href="#">Subcategories</a></li>
-        <li class="odd"><a href="#">Products</a></li>
-        <li class="even"><a href="#">Customer's Profile</a></li>
-        <li class="odd"><a href="#">Customer's Order History</a></li>
-      </ul>
+      <?php include 'controlPanelControls.php'; ?>
       <div class="title_box">Special Products</div>
       <div class="border_box">
         <div class="product_title"><a href="#">Makita 156 MX-VL</a></div>
@@ -85,32 +55,30 @@
           <table width="100%">
             <tr>
               <td>
-               <span class='label'>Category: </span></td><td>
-               <select class="admin"name="category"></select>
+               <span class='label'>Category: </span>
+               <select id="cNames_menu" width='20%'>
+               <?php
+                 foreach ($cData as $key => $cat)
+                  {
+                   echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
+                  }
+                ?>
+                </select>
               </td>
               <td>
-                <span class='label'>Name: </span>
-                <input type="text" name="subcategoryName" class="newsletter_input"/>
+                <span class='label'>Subcategory Name: </span>
+                <input type="text" id="subcategoryName" class="newsletter_input"/>
               </td>
             </tr>
-          </table>   
-          <input type="submit" name="okAdd" value="ADD" class="adminButton"/>
+          </table> 
+          <span id='insert_error' class='error'></span>  
+          <input type="submit" id="okAddSC" value="ADD" class="adminButton"/>
         </fieldset>
       </form>
        <!-- ............................. delete subcategories ....................................... -->
        <form method="post" action="">
         <fieldset>
           <legend>DELETE</legend>
-            <!-- <span class='label'>Category: </span> 
-            <select name='scNames_menu' width='20%'>
-            <?php
-
-              foreach ($cData as $key => $cat)
-              {
-                echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
-              }
-            ?>
-            </select> -->
 
             <table class='adminTable'>
               <tr>
@@ -119,26 +87,41 @@
                 <th>Action</th>
               </tr>
               <?php
-                include '../../subcategory.php';
+                include '../../classes/subcategory.php';
                 $subcategory = new Subcategory();
                 
                 foreach ($cData as $key => $cate) 
                 {
                   $scData=$subcategory->getSubcategories($cate['cID']);
                   $scCount=count($scData);
+                  // echo "<tbody>";
+                  // echo "<section>";
                   echo "<tr>";
-                  echo "<td rowspan='".$scCount."'>".$cate['cName']."</td>"; 
-                  
-                  for ($i=$scCount ; $i>0 ; $i--) 
-                  {
-                    echo "<td value='".$scData[$scCount-$i]['scID']."'>".$scData[$scCount-$i]['scName']."</td>";
-                  }
+                  echo "<td class='cNameCol' value='".$cate['cID']."' rowspan='".$scCount."'>".$cate['cName']."</td>"; 
                   if($scCount==0)
                   {
-                    echo "<td> --------- This Category is EMPTY --------- </td>";
+                    echo "<td colspan='2'> --------- This Category is EMPTY --------- </td>";
+                    echo "</tr>";
+                    // echo "</section>";
+                    // echo "</tbody>";
                   }
-                  echo "<td><a href=''>delete</a></td>";
-                  echo "</tr>";   
+                  else
+                  {
+                    echo "<td class='scNameCol'>".$scData[0]['scName']."</td>";
+                    echo "<td class='actCol'><a href='' class='deleteSC' value='".$scData[0]['scID']."'>delete</a></td>";
+                    echo "</tr>";
+                    // echo "</section>";
+                    // echo "</tbody>";
+                  }
+                  for ($i=$scCount-1 ; $i>0 ; $i--) 
+                  {
+                    echo "<tr>";
+                    echo "<td class='scNameCol'>".$scData[$scCount-$i]['scName']."</td>";
+                    echo "<td class='actCol'><a href='' class='deleteSC' value='".$scData[$scCount-$i]['scID']."'>delete</a></td>";
+                    echo "</tr>";
+                  }
+                  
+                  // echo "</tr>";   
                 }
               ?>
             </table>
@@ -148,8 +131,41 @@
       <form method="post" action="">
         <fieldset>
           <legend>EDITE</legend>
-          Name:  <input type="text" name="categoryName" class="newsletter_input"/>
-          <input type="button" name="okEdit" value="DONE" class="adminButton"/>
+          <table>
+            <tr>
+              <td>
+               <span class='label'>Category: </span>
+              </td>
+              <td>
+               <select id="cNames_menu_edit" width='20%'>
+               <?php
+                 foreach ($cData as $key => $cat)
+                  {
+                   echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
+                  }
+                ?>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+               <span class='label'>Subcategory: </span>
+              </td>
+              <td>
+               <select id="scNames_menu_edit" width='20%'></select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class='label'>New Subcategory: </span>
+              </td>
+              <td>
+                <input type="text" id="newSubcategory" class="newsletter_input"/>
+              </td>
+            </tr>
+          </table> 
+          <span id='edit_error' class='error'></span>  
+          <input type="submit" id="okEditSC" value="ADD" class="adminButton"/>
         </fieldset>
       </form>
 

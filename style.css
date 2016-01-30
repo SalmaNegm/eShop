@@ -117,9 +117,9 @@ height:30px;
 margin:5px 0 0 0;
 background:url(images/menu_title_bg.gif) no-repeat center;
 text-align:center;
-font-size:13px;
+font-size:15px;
 font-weight:bold;
-color:seagreen;
+color:purple;
 line-height:30px;
 }
 /*--------left menu---------*/
@@ -137,11 +137,17 @@ ul.left_menu li.odd a{
 width:166px;height:25px;display:block; border-bottom:1px #e4e4e4 dashed;
 text-decoration:none;color:#504b4b;padding:0 0 0 14px; line-height:25px;
 }
+li.sub_odd a
+{
+	width:125px;height:25px;display:block; border-bottom:1px #e4e4e4 dashed;
+	text-decoration:none;color:#504b4b;padding:0 0 0 14px; line-height:25px;
+}
+
 ul.left_menu li.even a{
 width:166px;height:25px;display:block; border-bottom:1px #e4e4e4 dashed; background-color:#f0f4f5;
 text-decoration:none;color:#504b4b;padding:0 0 0 14px; line-height:25px;
 }
-ul.left_menu li.even a:hover, ul.left_menu li.odd a:hover{
+ul.left_menu li.even a:hover, ul.left_menu li.odd a:hover , li.sub_odd a:hover{
 color:#000; text-decoration:underline;
 }
 
@@ -550,7 +556,7 @@ margin-bottom: 10px;
 }
 .adminTable tr:nth-child(even)
 {
-	background-color: #F8BF7C;
+	background-color: lightblue;
 }
 fieldset
 {
@@ -558,7 +564,7 @@ fieldset
 	margin-bottom: 30px;
 	padding:10px;
 }
-#error
+.error
 {
 	color:red;
 	font-weight: bold;
@@ -582,4 +588,9 @@ span.label
 {
 	font-weight: bold;
 	font-size: 14px;
+}
+
+textarea
+{
+	resize: none;
 }
