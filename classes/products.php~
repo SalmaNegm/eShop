@@ -1,0 +1,128 @@
+<?php 
+	class product{
+
+	private static $conn = Null;
+	var $pID;
+	var $pName;
+	var $pPrice;
+	var $pQuantity;
+	var $pImg;
+	var $pDesc;
+	var $scID;
+	public function __construct($pID=-1) //default select with specific id
+	{
+			if(is_null(self::$conn)) self::$conn = mysqli_connect('localhost','root','iti','eShop');
+			if($pID!=-1)
+			 {
+				$query = "select * from products where pID=$pID ";
+				$result = mysqli_query(self::$conn,$query);
+				// if(mysqli_num_rows($result)>0)
+				// {
+					$product = mysqli_fetch_assoc($result);
+					$this->pID = $product['pID'];
+					$this->pName = $product['pName'];
+					$this->pPrice = $product['pPrice'];
+					$this->pQuantity = $product['pQuantity'];
+					$this->pImg = $product['pImg'];
+					$this->pDesc = $product['pDesc'];
+					$this->scID = $product['scID'];
+				// }
+				// else
+				// }
+				// 	return 'undefined';
+				// }
+			}
+	}
+	function products()   //select all products
+	{
+		$query = "select * from products";
+		$result = mysqli_query(self::$conn,$query);
+		$all_prod = [];
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$all_prod[] = $row;
+		}
+		return $all_prod;
+	}
+	function insert() //insert new product
+	{
+		$query = "insert into products(pName,pPrice,pQuantity,pImg,pDesc,scID) values('$this->pName','$this->pPrice','$this->pQuantity','$this->pImg','$this->pDesc','$this->scID')";
+		$result  = mysqli_query(self::$conn,$query);
+		return mysqli_insert_id(self::$conn);
+	}
+	function delete ()
+	{
+		$query = "delete from products where pID=$this->pID";
+		mysqli_query(self::$conn,$query);
+	}
+	function update ($pid)
+	{
+		$query = "update products set pName='$this->pName',pPrice='$this->pPrice',pQuantity='$this->pQuantity',pImg='$this->pImg',pDesc='$this->pDesc',scID='$this->scID' where pID=$pid";
+		mysqli_query(self::$conn,$query);
+	}
+	function get_product($id)   //by subcat id
+	 {
+		$query = "select * from products where scID=$id ";
+		$result = mysqli_query(self::$conn,$query);
+		$all_prod = [];
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$all_prod[] = $row;
+		}
+		return $all_prod;
+	
+	}
+	function get_By_price($val1,$val2)
+	{
+		$query ="select * from products where pPrice between $val1 and $val2";
+		$result = mysqli_query(self::$conn,$query);
+		$all_prod = [];
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$all_prod[] = $row;
+		}
+		return $all_prod;
+
+	}
+
+	function rand_prod()   //select random product
+	{
+		$query = "select * from products  ORDER BY RAND() LIMIT 1"; 
+		$result = mysqli_query(self::$conn,$query);
+		$all_prod = [];
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$all_prod[] = $row;
+		}
+		return $all_prod;
+	}
+
+
+	function last_products()   //select last products
+	{
+		$query = "select * from products  ORDER BY pID DESC ";  //limit 10
+		$result = mysqli_query(self::$conn,$query);
+		$all_prod = [];
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$all_prod[] = $row;
+		}
+		return $all_prod;
+	}
+
+	function last_added()   //select last product added
+	{
+		$query = "select * from products  ORDER BY pID DESC limit 1"; 
+		$result = mysqli_query(self::$conn,$query);
+		$all_prod = [];
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$all_prod[] = $row;
+		}
+		return $all_prod;
+	}
+
+	}
+
+
+ ?>

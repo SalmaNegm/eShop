@@ -85,12 +85,56 @@
 
 	}
 
+	function rand_prod()   //select random product
+	{
+		$query = "select * from products  ORDER BY RAND() LIMIT 1"; 
+		$result = mysqli_query(self::$conn,$query);
+		$all_prod = [];
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$all_prod[] = $row;
+		}
+		return $all_prod;
+	}
+
+
+	function last_products()   //select last products
+	{
+		$query = "select * from products  ORDER BY pID DESC ";  //limit 10
+		$result = mysqli_query(self::$conn,$query);
+		$all_prod = [];
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$all_prod[] = $row;
+		}
+		return $all_prod;
+	}
+
+	function last_added()   //select last product added
+	{
+		$query = "select * from products  ORDER BY pID DESC limit 1"; 
+		$result = mysqli_query(self::$conn,$query);
+		$all_prod = [];
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$all_prod[] = $row;
+		}
+		return $all_prod;
+	}
+
+	function get_details($id)   //by prod id
+	 {
+		$query = "select * from products where pID=$id ";
+		$result = mysqli_query(self::$conn,$query);
+		$all_detail = [];
+
+		while($row = mysqli_fetch_assoc($result)) {
+			$all_detail[] = $row;
+		}
+		return $all_detail;
 	
-
-
-
-
-
+	}
+	
 
 	}
 

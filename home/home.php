@@ -109,7 +109,7 @@
             echo "<div class='product_img'><a href='#'><img style='width:100px;height:100px;' src='$img' alt='' border='0' /></a></div>";
             echo "<div class='prod_price'><span class='reduce'>1000$</span> <span class='price'>$price$</span></div>";
             echo " </div>";
-            echo "<div class='prod_details_tab'> <a href='#' class='prod_buy'>Add to Cart</a> <a href='details.php?id=$id' class='prod_details'>Details</a> </div>";
+            echo "<div class='prod_details_tab'> <a href='cart.php?id=$id' class='prod_buy'>Add to Cart</a> <a href='details.php?id=$id' class='prod_details'>Details</a> </div>";
             echo "</div>";
           }
           ?>
@@ -143,9 +143,30 @@
 
 
       <div class="shopping_cart">
-        <div class="title_box">Shopping cart</div>
-        <div class="cart_details"> 3 items <br />
-          <span class="border_cart"></span> Total: <span class="price">350$</span> </div>
+      <?php 
+            $num =0 ;
+            if(isset($_SESSION['cart']) && isset($_SESSION['totalprice']))
+            {
+             // $num=count($_SESSION['cart']);
+             $totalprice = $_SESSION['totalprice'];
+              foreach ($_SESSION['cart'] as $key => $value) {
+                $num +=$value;
+                
+              }
+            }
+            else
+            {
+              $num = 0;
+              $totalprice = 0;
+            }
+      
+        echo "<div class='title_box'>Shopping cart</div>";
+        echo "<div class='cart_details'> $num items <br/>";
+        echo "<span class='border_cart'></span> Total: <span class='price'>$totalprice $</span></div>";
+
+        ?>
+
+
         <div class="cart_icon"><a href="#"><img src="images/shoppingcart.png" alt="" width="35" height="35" border="0" /></a></div>
       </div>
 
@@ -180,7 +201,7 @@
   </div>
   <!-- end of main content -->
   <div class="footer">
-    <div class="left_footer"> <img src="images/4.png" alt="" width="89" height="42"/> </div>
+    <div class="left_footer"> <!--<img src="" alt="" width="89" height="42"/> --></div>
     <div class="center_footer"> Template name. All Rights Reserved 2016<br />
       <a href="http://csscreme.com"><img src="images/csscreme.jpg" alt="csscreme" title="csscreme" border="0" /></a><br />
       <img src="images/payment.gif" alt="" /> </div>

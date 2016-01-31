@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
   session_start();
+  include '../../classes/products.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -24,12 +25,7 @@
     <div class="crumb_navigation"> Navigation: <span class="current">Home</span> </div>
     <div class="left_content">
       <?php include 'controlPanelControls.php'; ?>
-      <div class="title_box">Special Products</div>
-      <div class="border_box">
-        <div class="product_title"><a href="#">Makita 156 MX-VL</a></div>
-        <div class="product_img"><a href="#"><img src="../../images/p1.jpg" alt="" border="0" /></a></div>
-        <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-      </div>
+      <?php include 'specialProductsBox.php'; ?>
      <!-- <div class="title_box">Newsletter</div>
       <div class="border_box">
         <input type="text" name="newsletter" class="newsletter_input" value="your email"/>
@@ -54,7 +50,7 @@
                   <input type="text" list="browsers" id='tt' name="browser"/>
                   <datalist id="browsers">
                     <?php
-                      include '../../classes/products.php';
+         
                       $products=new product();
                       $allPro=$products->products();
                       foreach ($allPro as $key => $pro)
@@ -120,23 +116,10 @@
     </div>
     <!-- end of center content -->
     <div class="right_content">
-      <div class="title_box">Search by Price</div>
-      <div class="border_box">
-        Price <input type="text" name="minPrice" class="price_input"/> to: <input type="text" name="maxPrice" class="price_input"/> 
-        <!--<input type="text" name="newsletter" class="newsletter_input" value="keyword"/>-->
-        <a href="#" class="join">search</a> </div>
-      <div class="shopping_cart">
-        <div class="title_box">Shopping cart</div>
-        <div class="cart_details"> 3 items <br />
-          <span class="border_cart"></span> Total: <span class="price">350$</span> </div>
-        <div class="cart_icon"><a href="#"><img src="../../images/shoppingcart.png" alt="" width="35" height="35" border="0" /></a></div>
-      </div>
-      <div class="title_box">What’s new</div>
-      <div class="border_box">
-        <div class="product_title"><a href="#">Motorola 156 MX-VL</a></div>
-        <div class="product_img"><a href="#"><img src="../../images/p2.jpg" alt="" border="0" /></a></div>
-        <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-      </div>
+     <?php include 'searchByPriceBox.php'; ?>
+      <?php include 'searchByCategoryBox.php'; ?>
+      <?php include 'shoppingCartBox.php'; ?>
+      <?php include 'whatIsNewBox.php'; ?>
      <!-- <div class="title_box">Manufacturers</div>
       <ul class="left_menu">
         <li class="odd"><a href="#">Bosch</a></li>
