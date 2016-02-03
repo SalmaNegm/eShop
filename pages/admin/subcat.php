@@ -9,29 +9,31 @@
 <link rel="stylesheet" type="text/css" href="../../style.css" />
 <link rel="stylesheet" href="../../try.css" type="text/css" media="screen" />
 <script type="text/javascript" src="js/boxOver.js"></script>
+<link rel="stylesheet" href="../../bootstrap.css" />
 </head>
 <body>
 <div id="main_container">
   <?php include '../banner.php'; ?>
-  <div id="main_content">
-    <?php
-      if(isset($_SESSION['user']))
+  <?php
+    if(isset($_SESSION['user']))
+    {
+      if($_SESSION['user']==1)
       {
-        if($_SESSION['user']==1)
-        {
-          include 'navigation.php';
-        }
-        else
-        {
-          include 'signedCustomer_nav.php';
-        }
+        include 'navigation.php';
       }
       else
       {
-        include 'unsignedCustomer_nav.php';
+        include 'signedCustomer_nav.php';
       }
+    }
+    else
+    {
+      include 'unsignedCustomer_nav.php';
+    }
 
-    ?>
+  ?>
+  <div id="main_content">
+    
     <!-- end of menu tab -->
     <div class="crumb_navigation"> Navigation: <span class="current">Home</span> </div>
     <div class="left_content">

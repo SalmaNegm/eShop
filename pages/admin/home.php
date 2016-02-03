@@ -9,30 +9,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
 <link rel="stylesheet" type="text/css" href="../../style.css" />
 <link rel="stylesheet" href="../../try.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../bootstrap.css" />
 <!-- <script type="text/javascript" src="js/boxOver.js"></script> -->
 </head>
 <body>
 <div id="main_container">
   <?php include '../banner.php'; ?>
-  <div id="main_content">
-    <?php
-    	if(isset($_SESSION['user']))
-    	{
-    		if($_SESSION['user']==1)
-    		{
-    			include 'navigation.php';
-    		}
-    		else
-    		{
-    			include 'signedCustomer_nav.php';
-    		}
-    	}
-    	else
-    	{
-    		include 'unsignedCustomer_nav.php';
-    	}
+  <?php
+      if(isset($_SESSION['user']))
+      {
+        if($_SESSION['user']==1)
+        {
+          include 'navigation.php';
+        }
+        else
+        {
+          include 'signedCustomer_nav.php';
+        }
+      }
+      else
+      {
+        include 'unsignedCustomer_nav.php';
+      }
 
     ?>
+  <div id="main_content">
+    
     <!-- end of menu tab -->
     <div class="crumb_navigation"> Navigation: <span class="current">Home</span> </div>
     <div class="left_content">
@@ -58,11 +60,11 @@
     if(!isset($_SESSION['user']))
     {
       echo "<div class='title_box'>Login</div>";
-      echo "<form action='login_server.php' method='post'>";
-      echo "Email:<input type='text' name='email' style='height:15px;width:120px'/>";
-      echo "Password:<input type='password' name='passwd' style='height:15px;width:100px;margin-top:0px;margin-bottom:0px'/>";
-      echo "<input type='checkbox' name='remember' style='height:12px;width:12px'/>Remember Me<br/>";
-      echo "<input type='submit' name='loginbtn' style='height:25px;width:50px;font-size:13px;margin-top:0px' value='login'/>";
+      echo "<form action='login_server.php' method='post' class='form-horizontal'>";
+      echo "<div class='form-group'><label class='control-label col-xs-4'>Email</label><div class='col-xs-8'><input type='text' name='email' class='form-control'/></div></div>";
+      echo "<div class='form-group'><label class='control-label col-xs-4'>Password</label><div class='col-xs-8'><input type='password' name='passwd' class='form-control'/></div>";
+      echo "<div class='form-group'><div class='col-xs-offset-4 col-xs-8'><div class='checkbox'><label><input type='checkbox' name='remember' style='width:10px;height:10px'/>Remember me</label></div></div></div>";
+      echo "<div class='col-xs-offset-4 col-xs-8'><input type='submit' name='loginbtn' class='form-control' value='login'/></div></div>";
       echo "</form>";
 
     }

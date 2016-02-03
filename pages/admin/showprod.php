@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="../../style.css" />
 <link rel="stylesheet" href="../../try.css" type="text/css" media="screen" />
 <script type="text/javascript" src="js/boxOver.js"></script>
+<link rel="stylesheet" href="../../bootstrap.css" />
 </head>
 <body>
 <div id="main_container">

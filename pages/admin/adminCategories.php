@@ -24,8 +24,9 @@
 <body>
 <div id="main_container">
   <?php include '../banner.php'; ?>
+  <?php include 'navigation.php'; ?>
   <div id="main_content">
-    <?php include 'navigation.php'; ?>
+    
     <!-- end of menu tab -->
     <div class="crumb_navigation"> Navigation: <span class="current">Home</span> </div>
     <div class="left_content">
