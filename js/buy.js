@@ -2,11 +2,11 @@ $(function(){
 	$('#btnBUY').on('click',function(){
 		arr = $('#totalPrice').text().split('L');
 		d={};
-		d.total=arr[0];
+		d.total=parseInt($.trim(arr[0]));
 
 		$.ajax
 			({
-				url: "../customer/buy_server.php",
+				url: "buy_server.php",
 				type: 'GET',
 				dataType: 'html',
 				data: d,
@@ -24,7 +24,7 @@ $(function(){
 					}
 				},
 				error: function (error) {
-					console.log('fkjjkjk');
+					console.log(error);
 				}
 			});	
 	});
@@ -69,7 +69,7 @@ $(function(){
 		// alert(d.selected_pID);
 		$.ajax
 			({
-				url: "../customer/buy_server.php",
+				url: "buy_server.php",
 				type: 'GET',
 				dataType: 'html',
 				data: d,

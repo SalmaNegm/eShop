@@ -15,6 +15,7 @@
 <script src="../../jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="../../js/boxOver.js"></script>
 <script  type="text/javascript" src="../../js/adminDeleteProduct.js"></script>
+<link rel="stylesheet" href="../../bootstrap.css" />
 </head>
 <body>
 <div id="main_container">
@@ -30,17 +31,17 @@
     <!-- end of left content -->
     <div class="center_content">
       <!-- ............................. Delete product ....................................... -->
-      <form method="post" action="adminEditProduct_server.php" enctype='multipart/form-data'>
+      <form method="post" action="adminEditProduct_server.php" enctype='multipart/form-data' class="form-horizontal">
         <input type="hidden" value='' id='pID' id='hidden_pID'/>
         <fieldset>
           <legend>DELETE</legend>
-            <table>
-            <tr><td colspan="2"><span id="searchError" class='error'></span></td></tr>
-              <tr>
-                <td><span class='label'>Product Name: </span></td>
-                <td>
-                  <input type="text" list="browsers" id='tt' name="browser"/>
-                  <datalist id="browsers" autocomplete="off">
+            <span id="searchError" class='error'></span>
+
+            <div class="form-group">
+              <label class='control-label col-xs-3'>Product Name</label>
+              <div class="col-xs-9">
+                <input type="text" list="browsers" id='tt' name="browser" class="form-control" />
+                <datalist id="browsers" autocomplete="off">
                     <?php
                
                       $products=new product();
@@ -50,50 +51,74 @@
                         echo "<option value='".$pro['pName']."' data-pid='".$pro['pID']."'>".$pro['pID']."</option>";
                       }
                     ?>
-
                   </datalist>
-                  <input type="button" id="search_btn_delete" value="search"/>
-                  </td>
-              </tr>
-              </table>
-              <div id='viewer'>
-              <table>
-              
-              <tr><td colspan="2"><hr/></td></tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('insert_pName', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Name: </span></td>
-                <td><sapn id='insert_pName'></sapn></td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('cNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Category: </span></td>
-                <td>
-                  <span id='cNames_menu_edit'></span>
-                </td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('scNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Subcategory: </span></td>
-                <td><sapn id='scNames_menu_edit'></span></td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('insert_pPrice', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Price: </span></td>
-                <td><sapn id='insert_pPrice' ></sapn></td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('insert_pQuantity', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Quantity: </span></td>
-                <td><span id='insert_pQuantity' ></span></td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('insert_pImage', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Image: </span></td>
-                <td><sapn name='insert_pImage' id='insert_pImage'></sapn><img id='dispImg' width='100px' height="100px" /></td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('insert_pDesc', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Description: </span></td>
-                <td><span id='insert_pDesc' ></span></td>
-              </tr>
-              
-            </table>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="col-xs-offset-3 col-xs-9">
+                <input type="button" id="search_btn_delete" value="search" class="btn btn-primary" />
+              </div>
+            </div>
 
-          <input type="submit" name="delete_ok" value="DELETE" class="adminButton"/>
+              <div id='viewer'>
+              <hr/>
+
+              <div class="form-group">
+                <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pName', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Name</label>
+                <div class="col-xs-9">
+                  <span id='insert_pName'></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class='control-label col-xs-3' style="color:<?php if(in_array('cNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Category</label>
+                <div class="col-xs-9">
+                  <span id='cNames_menu_edit'></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class='control-label col-xs-3' style="color:<?php if(in_array('scNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Subcategory</label>
+                <div class="col-xs-9">
+                  <span id='scNames_menu_edit'></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pPrice', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Price</label>
+                <div class="col-xs-9">
+                  <sapn id='insert_pPrice' ></sapn>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pQuantity', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Quantity</label>
+                <div class="col-xs-9">
+                  <span id='insert_pQuantity' ></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pImage', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Image</label>
+                <div class="col-xs-9">
+                  <img id='dispImg' width='200px' height="200px" />
+                </div>
+              </div>
+
+              <div class="form-gorup">
+                <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pDesc', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Description</label>
+                <div class="col-xs-9">
+                  <span id='insert_pDesc' ></span>
+                </div>
+              </div>
+
+              <div class="from-group">
+                <div class="col-xs-offset-3 col-xs-9">
+                  <input type="submit" name="delete_ok" value="DELETE" class="adminButton"/>
+                </div>
+              </div>
+
           </div> <!-- end of viewer div -->
         </fieldset>
       </form>

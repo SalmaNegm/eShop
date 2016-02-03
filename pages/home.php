@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="../../style.css" />
 <link rel="stylesheet" href="../../try.css" type="text/css" media="screen" />
 <!-- <script type="text/javascript" src="js/boxOver.js"></script> -->
+<link rel="stylesheet" href="../../bootstrap.css" />
 </head>
 <body>
 <div id="main_container">
@@ -58,11 +59,11 @@
     if(!isset($_SESSION['user']))
     {
       echo "<div class='title_box'>Login</div>";
-      echo "<form action='login_server.php' method='post'>";
-      echo "Email:<input type='text' name='email' style='height:15px;width:120px'/>";
-      echo "Password:<input type='password' name='passwd' style='height:15px;width:100px;margin-top:0px;margin-bottom:0px'/>";
+      echo "<form action='login_server.php' method='post' class='form-horizontal'>";
+      echo "<div class='form-group'><label class='control-label col-xs-4'>Email</label><div class='col-xs-8'><input type='email' name='email' class='form-control'/></div></div>";
+      echo "<div class='form-group'><label class='control-label col-xs-4'>Password</label><div class='col-xs-8'><input type='password' name='passwd' class='form-control'/></div></div>";
       echo "<input type='checkbox' name='remember' style='height:12px;width:12px'/>Remember Me<br/>";
-      echo "<input type='submit' name='loginbtn' style='height:25px;width:50px;font-size:13px;margin-top:0px' value='login'/>";
+      echo "<div class='form-group'><idv class='col-xs-offset-3 col-xs-9'><input type='submit' name='loginbtn' class='form-control' value='login'/></div></div>";
       echo "</form>";
 
     }
@@ -125,6 +126,14 @@
       $last_price = $row["pPrice"];
       $last_img = $row["pImg"];
     }
+
+  echo "<div class='prod_box'>";
+  echo " <div class='center_prod_box'>";
+  echo "<div class='product_title'><a href='#'>$last_name</a></div>";
+  echo "<div class='product_img'><a href='#'><img style='width:100px;height:100px;' src='$last_img' alt='' border='0' /></a></div>";
+  echo "<div class='prod_price'><span class='reduce'>120$</span> <span class='price'>$last_price $</span></div>";
+  echo " </div>";
+  echo "</div>";
 
   ?>
 

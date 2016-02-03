@@ -2,10 +2,9 @@
 <?php
   session_start();
 	include '../../classes/category.php';
-    include '../../classes/products.php';
-	$category=new Category();
-	$data=$category->getCategories();
-  	$_SESSION['user']=1;
+  include '../../classes/products.php';
+  $category =new Category();
+  $categories=$category->getCategories();
 
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -20,6 +19,7 @@
 <script src="../../jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="../../js/boxOver.js"></script>
 <script  type="text/javascript" src="../../js/adminCategory.js"></script>
+<link rel="stylesheet" href="../../bootstrap.css" />
 </head>
 <body>
 <div id="main_container">
@@ -41,25 +41,39 @@
     <!-- end of left content -->
     <div class="center_content">
       <!-- ............................. ADD category ....................................... -->
-      <form method="post" action="">
-        <fieldset>
+     <fieldset>
           <legend>ADD</legend>
-          <span class='label'>Name:</span>  <input type="text" name="categoryName" class="newsletter_input"/> <span id='error' class='error'></span>
-          <input type="submit" name="okAdd" value="ADD" class="adminButton"/>
-        </fieldset>
+      <form method="post" action="" class="form-horizontal">
+        
+            <div class="form-group" id='1'>
+              <label class="col-xs-3 control-label">Name</label>
+              <div class="col-xs-9">
+                <input type="text" name="categoryName" class="form-control"/> <span id='error' class='error'></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-offset-3 col-xs-10">
+                <input type="submit" name="okAdd" value="ADD" class="btn btn-primary"/>
+              </div>
+            </div>
+         
+        
       </form>
+      </fieldset>
+      
        <!-- ............................. dispaly categories ....................................... -->
+       <feildset>
+       <legend>DELETE</legend>
       <?php
-      // include 'category.php';
       $categoryObj = new Category;
       $categories = $categoryObj->getCategories();
-      echo "<table class='adminTable'>";
-      echo "<tr><th>category name</th><th>actions</th></tr>";
+      echo "<table class='table table-hover table-striped' id='adminTable'>";
+      echo "<tr><thead><th>category name</th><th>actions</th></thead></tr>";
       foreach ($categories as $key => $category) 
       {
-          echo "<tr>";
+          echo "<tr >";
           echo "<td class='cName_col'>".$category['cName']."</td>";
-          echo "<td>";
+          echo "<td class='danger'>";
       ?>
           
         <a class='delete' href="" value=<?php echo $category['cID'] ?>>delete</a></td>
@@ -70,67 +84,57 @@
       }
       echo "</table>";
       ?>
+      </feildset>
+       
        <!-- ............................. edit category ....................................... -->
-      <form method="post" action="">
+      <form method="post" action="" class="form-horizontal">
         <fieldset id='editField'>
           <legend>EDITE</legend>
           <input type="hidden" id='hiddenCatID'/>
-          <table width="100%">
-          <tr>
-          <td>
-          <span class='label'>Category:</span> 
-          <select name="cNames_menu" width='20%'>
-          	<?php
-          		foreach ($data as $key => $cat) {
-          			echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
-          		}
-          	?>
-          </select> </td>
-          <td><span class='label'>New Name:</span>  <input type="text" id="categoryNewName" class="newsletter_input"/></td>
-          </tr>
-          </table>
+
+          <div class="form-group">
+            <label class="col-xs-3 control-label">Category</label>
+            <div class="col-xs-9">
+              <select name="cNames_menu" class="form-control">
+                <?php
+                  foreach ($categories as $key => $cat) {
+                    echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
+                  }
+                ?>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-xs-3 control-label" for="categoryNewName">New Name</label>
+            <div class="col-xs-9">
+              <input type="text" id="categoryNewName" class="form-control"/>
+            </div>
+          </div>
           
-          <span id='error' class='error'></span>
-          <input type="button" name="okEdit" value="DONE" class="adminButton"/>
+          <span id='edit_error' class='error'></span>
+          <div class="form-group">
+            <div class="col-xs-offset-3 col-xs-9">
+              <input type="button" name="okEdit" value="DONE" class="btn btn-primary"/>
+            </div>
+          </div>
         </fieldset>
       </form>
-
     </div>
     <!-- end of center content -->
+
+
     <div class="right_content">
       <?php include 'searchByPriceBox.php'; ?>
       <?php include 'searchByCategoryBox.php'; ?>  
       <?php include 'shoppingCartBox.php'; ?>
       <?php include 'whatIsNewBox.php'; ?>
-
-
-
-
-     <!-- <div class="title_box">Manufacturers</div>
-      <ul class="left_menu">
-        <li class="odd"><a href="#">Bosch</a></li>
-        <li class="even"><a href="#">Samsung</a></li>
-        <li class="odd"><a href="#">Makita</a></li>
-        <li class="even"><a href="#">LG</a></li>
-        <li class="odd"><a href="#">Fujitsu Siemens</a></li>
-        <li class="even"><a href="#">Motorola</a></li>
-        <li class="odd"><a href="#">Phillips</a></li>
-        <li class="even"><a href="#">Beko</a></li>
-      </ul>
-      <div class="banner_adds"> <a href="#"><img src="images/bann1.jpg" alt="" border="0" /></a> </div>
-    </div>-->
     <!-- end of right content -->
-  </div>
-  <!-- end of main content -->
-  <div class="footer">
-    <!-- <div class="left_footer"> <img src="images/footer_logo.png" alt="" width="89" height="42"/> </div>
-    <div class="center_footer"> AFS. All Rights Reserved 2016<br />
-      <a href="http://csscreme.com"><img src="images/csscreme.jpg" alt="csscreme" title="csscreme" border="0" /></a><br />
-      <img src="images/payment.gif" alt="" /> 
     </div>
-    <div class="right_footer"> <a href="#">home</a> <a href="#">about</a> <a href="#">sitemap</a> <a href="#">rss</a> <a href="#">contact us</a> </div>
-  </div> -->
-</div>
-<!-- end of main_container -->
-</body>
+    <!-- end of main content -->
+    <div class="footer">
+    
+    </div>
+    <!-- end of main_container -->
+  </body>
 </html>

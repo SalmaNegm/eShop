@@ -15,6 +15,7 @@
 <script src="../../jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="../../js/boxOver.js"></script>
 <script  type="text/javascript" src="../../js/adminEditProduct.js"></script>
+<link rel="stylesheet" href="../../bootstrap.css" />
 </head>
 <body>
 <div id="main_container">
@@ -36,53 +37,73 @@
     <!-- end of left content -->
     <div class="center_content">
       <!-- ............................. ADD product ....................................... -->
-      <form method="post" action="adminProduct_server.php" enctype='multipart/form-data'>
+      <form method="post" action="adminProduct_server.php" enctype='multipart/form-data' class="form-horizontal">
         <fieldset>
           <legend>ADD</legend>
-            <table>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('insert_pName', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Name: </span></td>
-                <td><input type="text" name='insert_pName' class="newsletter_input"/></td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('cNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Category: </span></td>
-                <td>
-                  <select id='cNames_menu_edit' name='cNames_menu_edit'>
-                    <?php
-                      include '../../classes/category.php';
-                      $category=new Category();
-                      $cData=$category->getCategories();
-                      foreach ($cData as $key => $cat)
-                      {
-                       echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
-                      }
-                    ?>
+            <div class="form-group">
+              <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pName', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Name</label>
+              <div class="col-xs-9">
+                <input type="text" name='insert_pName' class="form-control"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class='control-label col-xs-3' style="color:<?php if(in_array('cNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Category</label>
+              <div class="col-xs-9">
+                <select id='cNames_menu_edit' class="form-control" name='cNames_menu_edit'>
+                  <?php
+                    include '../../classes/category.php';
+                    $category=new Category();
+                    $cData=$category->getCategories();
+                    foreach ($cData as $key => $cat)
+                    {
+                     echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
+                    }
+                  ?>
                 </select>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('scNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Subcategory: </span></td>
-                <td><select id='scNames_menu_edit' name='scNames_menu_edit'></select></td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('insert_pPrice', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Price: </span></td>
-                <td><input type="number" name='insert_pPrice' class="newsletter_input"/></td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('insert_pQuantity', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Quantity: </span></td>
-                <td><input type="number" name='insert_pQuantity' class="newsletter_input"/></td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('insert_pImage', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Image: </span></td>
-                <td><input type="file" name='insert_pImage' id='insert_pImage'/></td>
-              </tr>
-              <tr>
-                <td><span class='label' style="color:<?php if(in_array('insert_pDesc', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Description: </span></td>
-                <td><textarea name='insert_pDesc' class="newsletter_input" rows='5' cols='50'></textarea></td>
-              </tr>
-            </table>
-          <input type="submit" name="insert_ok" value="ADD" class="adminButton"/>
+              </div>
+            </div>
+                
+            <div class="form-group">
+              <label class='control-label col-xs-3' style="color:<?php if(in_array('scNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Subcategory</label>
+              <div class="col-xs-9">
+                <select id='scNames_menu_edit' class="form-control" name='scNames_menu_edit'></select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pPrice', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Price</label>
+              <div class="col-xs-9">
+                <input type="number" name='insert_pPrice' class="form-control"/></td>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pQuantity', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Quantity</label>
+              <div class="col-xs-9">
+                <input type="number" name='insert_pQuantity' class="form-control"/>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pImage', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Image</label>
+              <div class="col-xs-9">
+                <input type="file" name='insert_pImage' id='insert_pImage' class="form-control" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pDesc', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Description</label>
+              <div class="col-xs-9">
+                <textarea name='insert_pDesc' class="form-control" rows='5' cols='50'></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-xs-offset-3 col-xs-9">
+                <input type="submit" name="insert_ok" value="ADD" class="btn btn-primary"/>
+              </div>
+            </div>
         </fieldset>
       </form>
     </div>

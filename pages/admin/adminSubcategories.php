@@ -1,13 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
   session_start();
-              include '../../classes/category.php';
-              include '../../classes/products.php';
-              $category=new Category();
-              $cData=$category->getCategories();
+  include '../../classes/category.php';
+  include '../../classes/products.php';
+  $category=new Category();
+  $cData=$category->getCategories();
 
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 <title>admin subcategory</title>
 
@@ -19,6 +20,7 @@
 <script src="../../jquery-1.12.0.min.js"></script>
 <script type="text/javascript" src="../../js/boxOver.js"></script>
 <script  type="text/javascript" src="../../js/adminSubcategory.js"></script>
+<link rel="stylesheet" href="../../bootstrap.css" />
 </head>
 <body>
 <div id="main_container">
@@ -48,30 +50,37 @@
       </div> -->
   
       <!-- ............................. ADD category ....................................... -->
-      <form method="post" action="">
+      <form method="post" action="" class="form-horizontal">
         <fieldset>
           <legend>ADD</legend>
-          <table width="100%">
-            <tr>
-              <td>
-               <span class='label'>Category: </span>
-               <select id="cNames_menu" width='20%'>
-               <?php
-                 foreach ($cData as $key => $cat)
+
+          <div class="form-group">
+            <label class='control-label col-xs-2'>Category</label>
+            <div class="col-xs-10">
+              <select id="cNames_menu" class="form-control">
+                <?php
+                  foreach ($cData as $key => $cat)
                   {
-                   echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
+                    echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
                   }
                 ?>
-                </select>
-              </td>
-              <td>
-                <span class='label'>Subcategory Name: </span>
-                <input type="text" id="subcategoryName" class="newsletter_input"/>
-              </td>
-            </tr>
-          </table> 
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class='control-label col-xs-2'>Subcategory</label>
+            <div class="col-xs-10">
+              <input type="text" id="subcategoryName" class="form-control"/>
+            </div>
+          </div>
+
           <span id='insert_error' class='error'></span>  
-          <input type="submit" id="okAddSC" value="ADD" class="adminButton"/>
+          <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-10">
+              <input type="submit" id="okAddSC" value="ADD" class="btn btn-primary"/>
+            </div>
+          </div>
         </fieldset>
       </form>
        <!-- ............................. delete subcategories ....................................... -->
@@ -79,11 +88,13 @@
         <fieldset>
           <legend>DELETE</legend>
 
-            <table class='adminTable'>
+            <table class='table table-hover'>
               <tr>
-                <th>Category</th>
-                <th>Subcategory</th>
-                <th>Action</th>
+                <thead>
+                  <th>Category</th>
+                  <th>Subcategory</th>
+                  <th>Action</th>
+                </thead>
               </tr>
               <?php
                 include '../../classes/subcategory.php';
@@ -93,21 +104,17 @@
                 {
                   $scData=$subcategory->getSubcategories($cate['cID']);
                   $scCount=count($scData);
-                  // echo "<tbody>";
-                  // echo "<section>";
                   echo "<tr>";
                   echo "<td class='cNameCol' value='".$cate['cID']."' rowspan='".$scCount."'>".$cate['cName']."</td>"; 
                   if($scCount==0)
                   {
                     echo "<td colspan='2'> --------- This Category is EMPTY --------- </td>";
                     echo "</tr>";
-                    // echo "</section>";
-                    // echo "</tbody>";
                   }
                   else
                   {
                     echo "<td class='scNameCol'>".$scData[0]['scName']."</td>";
-                    echo "<td class='actCol'><a href='' class='deleteSC' value='".$scData[0]['scID']."'>delete</a></td>";
+                    echo "<td class='actCol danger'><a href='' class='deleteSC' value='".$scData[0]['scID']."'>delete</a></td>";
                     echo "</tr>";
                     // echo "</section>";
                     // echo "</tbody>";
@@ -116,55 +123,53 @@
                   {
                     echo "<tr>";
                     echo "<td class='scNameCol'>".$scData[$scCount-$i]['scName']."</td>";
-                    echo "<td class='actCol'><a href='' class='deleteSC' value='".$scData[$scCount-$i]['scID']."'>delete</a></td>";
+                    echo "<td class='actCol danger'><a href='' class='deleteSC' value='".$scData[$scCount-$i]['scID']."'>delete</a></td>";
                     echo "</tr>";
-                  }
-                  
-                  // echo "</tr>";   
+                  }   
                 }
               ?>
             </table>
       </fieldset>
       </form>
        <!-- ............................. edit category ....................................... -->
-      <form method="post" action="">
+      <form method="post" action="" class="form-horizontal">
         <fieldset>
           <legend>EDITE</legend>
-          <table>
-            <tr>
-              <td>
-               <span class='label'>Category: </span>
-              </td>
-              <td>
-               <select id="cNames_menu_edit" width='20%'>
-               <?php
-                 foreach ($cData as $key => $cat)
-                  {
-                   echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
-                  }
-                ?>
+
+            <div class="form-group">
+              <label class='control-label col-xs-3'>Category</label>
+              <div class="col-xs-9">
+                <select id="cNames_menu_edit" class="form-control">
+                  <?php
+                    foreach ($cData as $key => $cat)
+                     {
+                      echo"<option value='".$cat['cID']."'>".$cat['cName']."</option>";
+                     }
+                  ?>
                 </select>
-              </td>
-            </tr>
-            <tr>
-              <td>
-               <span class='label'>Subcategory: </span>
-              </td>
-              <td>
-               <select id="scNames_menu_edit" width='20%'></select>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class='label'>New Subcategory: </span>
-              </td>
-              <td>
-                <input type="text" id="newSubcategory" class="newsletter_input"/>
-              </td>
-            </tr>
-          </table> 
-          <span id='edit_error' class='error'></span>  
-          <input type="submit" id="okEditSC" value="ADD" class="adminButton"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class='control-label col-xs-3'>Subcategory</label>
+              <div class="col-xs-9">
+                <select id="scNames_menu_edit" class="form-control"></select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class='control-label col-xs-3'>New Subcategory</label>
+              <div class="col-xs-9">
+                <input type="text" id="newSubcategory" class="form-control"/>
+              </div>
+            </div>
+
+            <span id='edit_error' class='error'></span> 
+            <div class="form-group"> 
+              <div class="col-xs-offset-3 col-xs-9">
+                <input type="submit" id="okEditSC" value="ADD" class="btn btn-primary"/>
+              </div>
+            </div>
         </fieldset>
       </form>
 

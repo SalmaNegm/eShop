@@ -19,12 +19,13 @@ $(function()
 					$(this).addClass("success");//not executing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					$('#error:first').text('');
 					$('input[name=categoryName]').val('');
-					$('.adminTable').append("<tr><td class='cName_col'>"+d.categoryName+"</td><td><a class='delete' href='' value="+response+">delete</a></td></tr>");
+					$('#adminTable').append("<tr><td class='cName_col'>"+d.categoryName+"</td><td class='danger'><a class='delete' href='' value="+response+">delete</a></td></tr>");
 					$('select[name=cNames_menu]').append("<option value='"+response+"'>"+d.categoryName+"</option>");
 				}
 				else
 				{
 					$('#error:first').text(response);
+					$('#1').addClass('has-error');
 				}
 				
 			},
@@ -90,7 +91,7 @@ $(function()
 				}
 				else
 				{
-					$('table ~ #error').text(response);
+					$('#edit_error').text(response);
 				}
 				
 			},

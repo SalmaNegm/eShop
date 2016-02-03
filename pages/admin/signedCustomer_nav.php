@@ -4,6 +4,6 @@
         <li class="divider"></li>
         <li><a href="#" class="nav">My account</a></li>
         <li class="divider"></li>
-        <li><a href="#" class="nav">logout</a></li>
+        <li><a href="logout_server.php" class="nav">logout</a></li>
       </ul>
     </div>

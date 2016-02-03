@@ -31,11 +31,11 @@
 		}
 	}
 
-	if(isset($_GET['total']) && isset($_SESSION['cart']) && isset($_SESSION['userID']))
+	if(isset($_GET['total']) && isset($_SESSION['cart']) && isset($_SESSION['user']))
 	{
-		if(!empty($_GET['total']) && !empty($_SESSION['cart']) && !empty($_SESSION['userID']))
+		if(!empty($_GET['total']) && !empty($_SESSION['cart']) && !empty($_SESSION['user']))
 		{
-			$customer=new user($_SESSION['userID']);
+			$customer=new user($_SESSION['user']);
 			// echo $customer->cridetLimit."....".trim($_GET['total']);
 			// exit();
 			// if($customer->cridetLimit >= $_GET['total'])
@@ -45,6 +45,9 @@
 			// exit();
 			if($customer->cridetLimit >= trim($_GET['total']))
 			{
+				$err=false;
+				$conn=new mysqli('localhost','root','iti','eShop');
+				mysqli_autocommit($conn,false);
 
 				foreach ($_SESSION['cart'] as $pID => $q) 
 				{
@@ -57,10 +60,11 @@
 					}
 				}
 				$order=new Order();
-				$order->uID=$_SESSION['userID'];
+				$order->uID=$_SESSION['user'];
 				$order->oDate=date("Y-m-d");
 				$oID=$order->insert();
-
+				if($oID==false)
+					$err=true;
 				
 				$orderItem=new OrderItems();
 				foreach ($_SESSION['cart'] as $pID => $q) 
@@ -70,17 +74,33 @@
 					$orderItem->pID=$pID;
 					$orderItem->quantity=$q;
 					$orderItem->insert();
-
+					if($orderItem==false)
+						$err=true;
 					$product=new product($pID);
 					$product->pQuantity = $product->pQuantity - $q;
 					$product->update($pID);
+					if($product==false)
+						$err=true;
 				}
 
 				
 				$customer->cridetLimit= $customer->cridetLimit - $_GET['total'];
-				$customer->update($_SESSION['userID']);
-				$responce="done";
-				unset($_SESSION['cart']);
+				$customer->update($_SESSION['user']);
+				if($customer==false)
+					$err=true;
+				if($err)
+				{
+					mysqli_rollback($conn);
+					$responce='error happend!!';
+				}
+				else
+				{
+					mysqli_commit($conn);
+					$responce="done";
+					unset($_SESSION['cart']);
+				}
+				
+				
 			}
 			else
 				$responce='the money in your cridet is less than the total, please recharge';

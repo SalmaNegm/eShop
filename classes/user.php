@@ -28,7 +28,7 @@ class user{
 	}
 
 	function insert() {
-		$query = "insert into users(firstname,lastname,email) values('$this->firstname','$this->lastname','$this->email')";
+		$query = "insert into users(address,cridetLimit,DoB,email,job,password,uID,uName) values('".$this->address."',".$this->cridetLimi.",".$this->DoB.",'".$this->email."','".$this->job."','".$this->password."',".$this->uID.",'".$this->uName."')";
 		$result  = mysqli_query(self::$conn,$query);
 		return mysqli_insert_id(self::$conn);
 	}
@@ -55,10 +55,17 @@ class user{
 	}
 
 	function getuserByEmail($email) {
-		$query = "select email from customers where email='$email'";
-		$result = mysqli_query(self::$conn,$query);
-		//$user = mysqli_fetch_assoc($result);	
+		$query = "select email from customers where email=$email";
+		$result = mysqli_query(self::$conn,$query);	
 		return (mysqli_num_rows($result)>0)?True:False ;
+	}
+
+	function login($email,$passwd)
+	{
+		$query="select uID from customers where email='$email' and password='$passwd'";
+		$result=mysqli_query(self::$conn,$query);
+		$row = mysqli_fetch_assoc($result);
+		return $row;
 	}
 }
 ?>

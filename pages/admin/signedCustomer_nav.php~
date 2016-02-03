@@ -4,8 +4,6 @@
         <li class="divider"></li>
         <li><a href="#" class="nav">My account</a></li>
         <li class="divider"></li>
-        <li><a href="adminCategories.php" class="nav">Control Pannel</a></li>
-	<li class="divider"></li>
-        <li><a href="logout_server.php" class="nav">Logout</a></li>
+        <li><a href="#" class="nav">logout</a></li>
       </ul>
-</div>
+    </div>

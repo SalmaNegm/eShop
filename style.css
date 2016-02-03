@@ -558,12 +558,7 @@ margin-bottom: 10px;
 {
 	background-color: lightblue;
 }
-fieldset
-{
-	border-color: lightgray;
-	margin-bottom: 30px;
-	padding:10px;
-}
+
 .error
 {
 	color:red;
@@ -575,17 +570,7 @@ fieldset
 	font-size: 20px;
 	color:gray;
 }
-select
-{
-	width: 200px;
-	height:23px;
-	border:1px #ddd9d9 solid;
-	margin:10px 0 5px 0;
-	font-size:12px;
-	padding:3px;
-	color:black;
-	font-size: 13px;
-}
+
 span.label
 {
 	font-weight: bold;
