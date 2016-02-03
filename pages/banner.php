@@ -1,5 +1,5 @@
 <div id="header">
-  	<img src="../../images/img.jpg" width="100%" height="100%" />
+  	<img src="../../images/Babyshop.jpg" width="100%" height="100%" />
     <div class="top_right">
       
       <!-- <div class="big_banner"> <a href="#"><img src="images/img.jpg" alt="" border="0" /></a> </div> -->
