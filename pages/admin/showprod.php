@@ -141,7 +141,10 @@
       <br/>
       <!--SearchByPrice: <input type="number" name="search">-->
     </form>
-    <?php include 'shoppingCartBox.php'; ?>
+    <?php
+      if(isset($_SESSION['user']))
+        include 'shoppingCartBox.php'; 
+    ?>
 
 <!-- *********************************what's new**************************************-->
       <?php include 'whatIsNewBox.php'; ?>
