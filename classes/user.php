@@ -55,7 +55,7 @@ class user{
 	}
 
 	function getuserByEmail($email) {
-		$query = "select email from customers where email=$email";
+		$query = "select email from customers where email='$email'";
 		$result = mysqli_query(self::$conn,$query);	
 		return (mysqli_num_rows($result)>0)?True:False ;
 	}

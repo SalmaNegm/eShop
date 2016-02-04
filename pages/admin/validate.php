@@ -3,7 +3,7 @@
 	//var_dump($_POST);
 	//var_dump($_GET);
 	
-	include "user.php";
+	include "../../classes/user.php";
 	$userObj = new user;
 	$email = $userObj-> getuserByEmail($_GET['email']);
 	if(($email)==0)    //false

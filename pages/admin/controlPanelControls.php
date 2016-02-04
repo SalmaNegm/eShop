@@ -2,8 +2,9 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" href="../../bootstrap.css" />
-	<link rel="stylesheet" href="../../bootstrap_js/bootstrap.js.css" />
+	<script src="../../jquery-1.12.0.min.js"></script>
+	<link rel="stylesheet" href="../../css/bootstrap.css" />
+	<script src="../../bootstrap_js/bootstrap.js"></script>
 </head>
 <body>
 
@@ -11,17 +12,19 @@
 	<ul class="nav nav-pills nav-stacked">
 		<li><a href="adminCategories.php">Categories</a></li>
 		<li><a href="adminSubcategories.php">Subcategories</a></li>
-		<li class='dropdown'>
+		<li>
+		<div class='dropdown '>
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" >
 				Products
 				<span class="caret"></span>	
 			</a>
 			
-			<ul class="dropdown-menu dropdown-menu-right">
+			<ul class="dropdown-menu">
 				<li ><a href="adminProducts.php">Add New</a></li>
 				<li ><a href="adminEditProduct.php">Edit</a></li>
 				<li ><a href="adminDeleteProduct.php">Delete</a></li>
 			</ul>
+			</div>
 		</li>
 		<li><a href="#">Customer's Profile</a></li>
 		<li><a href="#">Customer's Order History</a></li>

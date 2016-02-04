@@ -18,8 +18,8 @@ $(function(){
 					}	
 					else
 					{
-						$('.center_content').empty();
-						$('.center_content').append("<span class='success'>We wish to gain your satisfaction. you successfully purchsed your cart</sapn>");
+						$('#main_content').empty();
+						$('#main_content').append("<span class='success'>We wish to gain your satisfaction. you successfully purchsed your cart</sapn>");
 
 					}
 				},

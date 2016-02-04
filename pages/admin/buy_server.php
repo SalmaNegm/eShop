@@ -104,9 +104,9 @@
 			}
 			else
 				$responce='the money in your cridet is less than the total, please recharge';
-
-			
 		}
+		else
+			$responce='empty values';
 	}
 
 

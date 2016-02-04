@@ -592,3 +592,10 @@ textarea
 	font-weight: bold;
 	color: gray;
 }
+
+ul.nav.navbar-nav li
+{
+	padding-top: 15px;
+		
+	font-size: 16px;
+}
