@@ -44,11 +44,11 @@
 								
 
 								//$result2 = mysqli_query($conn , $query2);
-								echo $id;
+								//echo $id;
 								if($result)
 								{
 									echo "You added succsessfully ,to our system";
-									header("signin.php");
+									header("home.php");
 
 								}
 								else

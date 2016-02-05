@@ -5,5 +5,9 @@ thead > tr > th {
     background-color: green;
 }*/
 .container{
-   // background-color:yellow;
+    background-color:yellow;
+}
+.title_box{
+
+	width:500px;
 }
