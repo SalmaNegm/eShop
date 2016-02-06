@@ -13,7 +13,7 @@ session_start();
 				if($r['uID']!='')
 				{
 					$_SESSION['user']=$r['uID'];
-					header("Location: home.php");
+					header('Location: ' . $_SERVER['HTTP_REFERER']);
 					exit();
 				}
 				else

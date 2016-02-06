@@ -11,7 +11,6 @@
     <title>admin subcategory</title>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
     <script src="../../jquery-1.12.0.min.js"></script>
-    <script type="text/javascript" src="../../js/boxOver.js"></script>
     <script  type="text/javascript" src="../../js/adminSubcategory.js"></script>
     <link rel="stylesheet" href="../../bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../../style.css" />

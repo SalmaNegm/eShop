@@ -21,10 +21,13 @@
 	{
 		if(!empty($_GET['proID']))
 		{
-			if(!empty($_GET['Quantity']))
+			if(!empty($_GET['Quantity']) && $_GET['Quantity']>0 )
+			{
 				$_SESSION['cart'][$_GET['proID']]=$_GET['Quantity'];
+			}
 			else
-				$_SESSION['cart'][$_GET['proID']]=0;
+				$_SESSION['cart'][$_GET['proID']]=1;
+
 			$responce=json_encode($_SESSION['cart']);
 
 			// echo json_encode($_SESSION['cart']);
@@ -36,13 +39,7 @@
 		if(!empty($_GET['total']) && !empty($_SESSION['cart']) && !empty($_SESSION['user']))
 		{
 			$customer=new user($_SESSION['user']);
-			// echo $customer->cridetLimit."....".trim($_GET['total']);
-			// exit();
-			// if($customer->cridetLimit >= $_GET['total'])
-			// 	echo 'yes';
-			// else
-			// 	echo "no";
-			// exit();
+
 			if($customer->cridetLimit >= trim($_GET['total']))
 			{
 				$err=false;

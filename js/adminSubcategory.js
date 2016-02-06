@@ -56,7 +56,7 @@ $(function()
 				if(exp.test(responce))
 				{
 					//$(this).addClass("success");//not executing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-					$('#error:first').text('');
+					$('#insert_error').text('');
 					
 					draw_scMenu();
 					// if($('.cNameCol[value='+responce+']').parent().children().length == 0)

@@ -16,7 +16,6 @@ $(function()
 				exp=new RegExp('^[0-9]+$');
 				if(exp.test(response))
 				{
-					$(this).addClass("success");//not executing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					$('#error:first').text('');
 					$('input[name=categoryName]').val('');
 					$('#adminTable').append("<tr><td class='cName_col'>"+d.categoryName+"</td><td class='danger'><a class='delete' href='' value="+response+">delete</a></td></tr>");

@@ -8,6 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
     <script type="text/javascript" src="../../jquery-1.12.0.min.js"></script>
     <script  type="text/javascript" src="../../js/buy.js"></script>
+    <script  type="text/javascript" src="../../bootstrap_js/bootstrap.js"></script>
     <link rel="stylesheet" href="../../bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../../style.css" />
   </head>
@@ -15,7 +16,23 @@
     <div id="main_container">
       <?php include '../banner.php'; ?>
       <div id="main_content">
-        <?php include '../admin/navigation.php'; ?>
+        <?php
+          if(isset($_SESSION['user']))
+          {
+            if($_SESSION['user']==1)
+            {
+             include 'navigation.php';
+            }
+            else
+            {
+              include 'signedCustomer_nav.php';
+            }
+          }
+          else
+          {
+            include 'unsignedCustomer_nav.php';
+          }
+        ?>
 
         <table width="140%" id="cartItems" class='table'>
           <tr style="background-color:lightblue;">
@@ -40,7 +57,11 @@
                   echo "</tr>";
                   $total+=($product->pPrice * $_SESSION['cart'][$pID]);
                 }
-                echo "<tr align=left style='background-color:lightpink'><td colspan='4'>Total:<sapn id='totalPrice'> ".$total." L.E</sapn></td><td><input type='button' value='BUY' id='btnBUY' name='buybtn' class='adminButton'/></td></tr>";
+                                                                                                                                      
+                if(isset($_SESSION['user']))
+                  echo "<tr align=left style='background-color:lightpink'><td colspan='4'>Total:<sapn id='totalPrice'> ".$total." L.E</sapn></td><td><input type='button' value='BUY' id='btnBUY' name='buybtn' class='btn btn-danger'/></td></tr>";
+                else
+                  echo "<tr align=left style='background-color:lightpink'><td colspan='4'>Total:<sapn id='totalPrice'> ".$total." L.E</sapn></td><td><input type='button' value='BUY' name='buybtn' class='btn btn-warning' data-toggle='modal' data-target='#myModal'/></td></tr>";
               }
             }
           ?>
@@ -51,6 +72,61 @@
         <div class="footer"></div> <!-- end of left content -->
       </div> <!-- end of main content -->
     </div> <!-- end of main_container -->
+
+    <!-- ............................ Modal ............................ -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">sign in</h4>
+          </div>
+
+          <div class="modal-body">
+            <h5>please signin to continue:</h5>
+            <form class="form form-horizontal" method="post" action="login_server.php">
+              <div class="form-group">
+              <label class="control-label col-xs-2">email</label>
+              <div class="col-xs-9">
+                <input type="email" name='email' class="form-control"/>
+              </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-xs-2">password</label>
+                <div class="col-xs-9">
+                  <input type="password" name='passwd' class="form-control"/>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-xs-offset-2 col-xs-9">
+                  <input type="submit" name='loginbtn' value='login' class="btn btn-primary"/>
+                </div>
+              </div>
+            </form>
+
+            
+            <h5>you have no account? <a href="registration.php"> sign up</a></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ........................... success Buy Modal .......................... -->
+    <div class="modal fade" id="successBuy" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-body">
+            <h5>Congratulations.We hope to gain your satisfaction.</h5>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
 <?php

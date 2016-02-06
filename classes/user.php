@@ -44,7 +44,7 @@ class user{
 	}
 
 	function users() {
-		$query = "select * from users";
+		$query = "select * from customers";
 		$result = mysqli_query(self::$conn,$query);
 		$data = [];
 
@@ -58,6 +58,13 @@ class user{
 		$query = "select email from customers where email='$email'";
 		$result = mysqli_query(self::$conn,$query);	
 		return (mysqli_num_rows($result)>0)?True:False ;
+	}
+
+	function getByEmail($email) {
+		$query = "select * from customers where email='$email'";
+		$result = mysqli_query(self::$conn,$query);	
+		$row = mysqli_fetch_assoc($result);
+		return $row ;
 	}
 
 	function login($email,$passwd)

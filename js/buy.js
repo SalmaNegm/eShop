@@ -18,9 +18,11 @@ $(function(){
 					}	
 					else
 					{
-						$('#main_content').empty();
-						$('#main_content').append("<span class='success'>We wish to gain your satisfaction. you successfully purchsed your cart</sapn>");
-
+						$('#successBuy').modal();
+						setTimeout(function(){
+							window.location.href = "home.php";
+						},3000);	
+						
 					}
 				},
 				error: function (error) {
@@ -33,10 +35,12 @@ $(function(){
 		d={};
 		d.proID=$(this).parent().parent().attr('value');
 		d.Quantity=$(this).val();
+		if(d.Quantity<=0 || d.Quantity=='')
+			$(this).val('1');
 		// alert(d.selected_pID);
 		$.ajax
 			({
-				url: "../customer/buy_server.php",
+				url: "buy_server.php",
 				type: 'GET',
 				dataType: 'html',
 				data: d,

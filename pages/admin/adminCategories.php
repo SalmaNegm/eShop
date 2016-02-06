@@ -12,10 +12,10 @@
     <title>admin category</title>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
     <script type="text/javascript" src="../../jquery-1.12.0.min.js"></script>
-    <script type="text/javascript" src="../../js/add.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/adminCategory.js"></script>
     <link rel="stylesheet" href="../../css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../../style.css" />
+    
   </head>
   <body>
     <div id="main_container">

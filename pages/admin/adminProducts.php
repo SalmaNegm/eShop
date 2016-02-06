@@ -7,11 +7,11 @@
   <head>
     <title>control panel - products</title>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
-    <link rel="stylesheet" type="text/css" href="../../style.css" />
+    
     <script src="../../jquery-1.12.0.min.js"></script>
-    <script type="text/javascript" src="../../js/boxOver.js"></script>
     <script  type="text/javascript" src="../../js/adminEditProduct.js"></script>
     <link rel="stylesheet" href="../../bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../../style.css" />
   </head>
   <body>
     <div id="main_container">
