@@ -18,7 +18,7 @@
     
         echo "<div class='title_box'>Shopping cart</div>";
         echo "<div class='cart_details'> $num items <br/>";
-        echo "<span class='border_cart'></span> Total: <span class='price'>$totalprice $</span></div>";
+        echo "<span class='border_cart'></span> Total: <span class='price'>$totalprice$</span></div>";
       ?>
       <div class="cart_icon">
         <a href="buy.php">
