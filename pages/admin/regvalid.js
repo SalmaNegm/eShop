@@ -28,7 +28,9 @@
 			if (this.value.match(pat))
 			{
 				fuid= true;
-				this.className="";
+				//this.className="";
+				$("#div1").removeClass("has-error");
+				$("#div1").addClass("has-success");
 				myspan.style.display="none";
 
 			}
@@ -37,7 +39,8 @@
 				fuid= false;
 				this.focus();
 				this.select();
-				this.className="Error";
+				//this.className="Error";
+				$("#div1").addClass("has-error");
 				myspan.style.display="block";
 				myspan.innerHTML="More than 5 letters";
 
@@ -48,11 +51,13 @@
 		pass.onblur=function()
 		{
 
-			var patad=/[a-zA-Z0-9]{5,10}/;
+			var patad=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$/;
 
 			if (this.value.match(patad))
 			{
-				this.className="";
+				//this.className="";
+				$("#div2").removeClass("has-error");
+				$("#div2").addClass("has-success");
 				myspan.style.display="none";
 
 			}
@@ -61,9 +66,10 @@
 				fuaddress= false;
 				this.focus();
 				this.select();
-				this.className="Error";
+				//this.className="Error";
+				$("#div2").addClass("has-error");
 				myspan.style.display="block";
-				myspan.innerHTML="only 5 more numbers";
+				myspan.innerHTML="Invalid Password";
 
 			}
 		}
@@ -72,8 +78,12 @@
 
 			if( pass.value == passcon.value)
 			{
-				this.className="";
-				pass.className="";
+				// this.className="";
+				// pass.className="";
+				$("#div2").removeClass("has-error");
+				$("#div3").removeClass("has-error");
+				$("#div2").addClass("has-success");
+				$("#div3").addClass("has-success");
 				myspan.style.display="none";
 
 			}
@@ -82,8 +92,10 @@
 
 				pass.focus();
 				pass.select();
-				this.className="Error";
-				pass.className="Error";
+				// this.className="Error";
+				// pass.className="Error";
+				$("#div2").addClass("has-error");
+				$("#div3").addClass("has-error");
 				myspan.style.display="block";
 				myspan.innerHTML="Unmatched";
 
@@ -119,7 +131,8 @@
 			if (this.value.match(pate))
 			{
 				fuemail= true;
-				this.className="";
+				//this.className="";
+				$("#div4").addClass("has-success");
 				myspan.style.display="none";
 
 //*************************************Ajax*******************************//
@@ -142,14 +155,16 @@
 								if(action== 'Avilable')
 								{
 									console.log('yes');
-
-									emailerr.html("<div style='color:green'>Avilable</div>");
+									$("#div4").removeClass("has-error");
+									//emailerr.html("<div style='color:green' margin-left:400px;>Avilable</div>");
 								}
 								else
 								{
 									//console.log (response);
 									console.log('no');
-									emailerr.html("Email Exist");
+									$("#email").select();
+									$("#div4").addClass("has-error");
+									//emailerr.html("Email Exist");
 								}
 							},
 							error: function (error) {
@@ -164,7 +179,8 @@
 				fuemail= false;
 				this.focus();
 				this.select();
-				this.className="Error";
+				//this.className="Error";
+				$("#div4").addClass("has-error");
 				myspan.style.display="block";
 				myspan.innerHTML=" Not valid expression";
 

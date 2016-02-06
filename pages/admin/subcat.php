@@ -7,9 +7,11 @@
   <head>
     <title>Baby Shop</title>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+    <script type="text/javascript" src="regvalid.js"></script>
     <script type="text/javascript" src="../../jquery-1.12.0.min.js"></script>
-    <script type="text/javascript" src="js/boxOver.js"></script>
-    <link rel="stylesheet" href="../../bootstrap.css" />
+    <script type="text/javascript" src="../../js/add.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="../../style.css" />
   </head>
   <body>
@@ -65,13 +67,15 @@
                 $name=$row["scName"];
                 $id = $row["scID"];
               }
-              echo "<table style='padding:10px;margin-left:100px;'>";
+              echo "<div class='container' style='font-size:15px; width:500px;'>";
+              echo "<table class='table table-hover'>";
               echo "<tr>";
-              echo "<th>";
-              echo"<td class='title_box'> <a href='showprod.php?id=$id'> $name </a></td>";
-              echo "</th>";
+              //echo "<th>";
+              echo"<th> <a href='showprod.php?id=$id'> $name </a></th>";
+              //echo "</th>";
               echo "</tr>";
               echo "</table>";
+              echo "</div>";
             }
           ?>    
         </div> <!-- end of center content -->
