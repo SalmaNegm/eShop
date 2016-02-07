@@ -1,5 +1,6 @@
 $(function()
 {
+	$('#nameError').hide();
 	$('#viewer').hide();
 	function searchProducts()
 	{
@@ -79,11 +80,11 @@ $(function()
 		});
 		if(isValid)
 		{
-		$('#viewer').show();
-		d={};
-		d.selected_pID=$('#browsers option[value='+$('#tt').val()+']').attr('data-pid');
-		// alert(d.selected_pID);
-		$.ajax
+			$('#viewer').show();
+			d={};
+			d.selected_pID=$('#browsers option[value='+$('#tt').val()+']').attr('data-pid');
+			// alert(d.selected_pID);
+			$.ajax
 			({
 				url: "../admin/adminEditProduct_server.php",
 				type: 'GET',

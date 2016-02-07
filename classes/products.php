@@ -72,6 +72,12 @@
 		return $all_prod;
 	
 	}
+	function isUniqueName($name)
+	{
+		$query="select * from products where pName='$name'";
+		$result=mysqli_query(self::$conn,$query);
+		return (mysqli_num_rows($result)>0)?True:False ;
+	}
 	function get_By_price($val1,$val2)
 	{
 		$query ="select * from products where pPrice between $val1 and $val2";

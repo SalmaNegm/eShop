@@ -51,7 +51,7 @@
                   echo "<tr value='".$pID."'>";
                   echo "<td><img width='100xpx' height='100px' src='".$product->pImg."'/></td>";
                   echo "<td align=left><span>".$product->pName."</sapn><br/><a class='cartRemove'href='' value='".$pID."'>remove</a></td>";
-                  echo "<td class='Q'><input type='number' value='".$_SESSION['cart'][$pID]."' style='width:50px'/></td>";
+                  echo "<td class='Q'><input type='number' min='1' value='".$_SESSION['cart'][$pID]."' style='width:50px'/></td>";
                   echo "<td class='price'>".$product->pPrice." L.E</td>";
                   echo "<td class='subTotal'>".$product->pPrice * $_SESSION['cart'][$pID]." L.E</td>";
                   echo "</tr>";

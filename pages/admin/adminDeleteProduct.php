@@ -1,6 +1,10 @@
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
   session_start();
+  if(isset($_SESSION['user']))
+  {
+    if($_SESSION['user']==1)
+    {
   include '../../classes/products.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -144,4 +148,10 @@
 </html>
 <?php
   unset($_SESSION['errors']);
+  }
+else
+echo "only admin can access this page";
+}
+else
+echo "only admin can access this page";
 ?>

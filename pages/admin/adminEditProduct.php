@@ -1,6 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
   session_start();
+  if(isset($_SESSION['user']))
+  {
+    if($_SESSION['user']==1)
+    {
   include '../../classes/products.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,7 +43,7 @@
             <input type="hidden" value='' name='pID' id='hidden_pID'/>
             <fieldset>
               <legend>EDIT</legend>
-                <span id="searchError" class='error'></span>
+                <span id="searchError" class='error help-block'></span>
 
                 <div class="form-group">
                   <label class='control-label col-xs-3'>Product Name</label>
@@ -71,6 +75,10 @@
                     <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pName', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Name</label>
                     <div class="col-xs-9">
                       <input type="text" name='insert_pName' class="form-control"/>
+                      <span class='error'><?php 
+                        if(isset($_SESSION['errors']['isUnique']))
+                        echo $_SESSION['errors']['isUnique'];
+                    ?></span>
                     </div>
                   </div>
 
@@ -151,4 +159,10 @@
 </html>
 <?php
   unset($_SESSION['errors']);
+  }
+else
+echo "only admin can access this page";
+}
+else
+echo "only admin can access this page";
 ?>

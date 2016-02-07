@@ -5,14 +5,14 @@
    		<div class="form-group form-group-xs">
    			<label class="control-label col-xs-2">From</label>
     		<div class="col-xs-10">
-    			<input type="number" name="from" class="form-control">
+    			<input type="number" min='1' name="from" class="form-control">
     		</div>
     	</div>
 
     	<div class="form-group form-group-xs">
     		<label class="control-label col-xs-2">To</label>
     		<div class="col-xs-10">
-    			<input type="number" name="to" class="form-control">
+    			<input type="number" min='1' name="to" class="form-control">
     		</div>
     	</div>
 

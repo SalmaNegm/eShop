@@ -18,14 +18,6 @@
 	            	</div>
 	            </div>
 
-	            <div class='form-group'>
-	            	<div class='checkbox col-xs-offset-4 col-xs-8'>
-	            		<label>
-	            			<input type='checkbox'/>Remember Me
-	            		</label>
-	            	</div>
-	            </div>
-
 	            <div class='form-group form-group-sm'>
 	            	<div class='col-xs-offset-4 col-xs-8'>
 	            		<input type='submit' name='loginbtn' class='btn btn-primary input-xs' value='login'/>

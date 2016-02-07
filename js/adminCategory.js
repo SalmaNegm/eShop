@@ -20,6 +20,7 @@ $(function()
 					$('input[name=categoryName]').val('');
 					$('#adminTable').append("<tr><td class='cName_col'>"+d.categoryName+"</td><td class='danger'><a class='delete' href='' value="+response+">delete</a></td></tr>");
 					$('select[name=cNames_menu]').append("<option value='"+response+"'>"+d.categoryName+"</option>");
+					$('#1').removeClass('has-error');	
 				}
 				else
 				{

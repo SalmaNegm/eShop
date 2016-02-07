@@ -11,6 +11,17 @@ if(isset($_POST['insert_ok']))
 			$isValid=False;
 			$arrErrors[]='insert_pName';
 		}
+		else
+		{
+			
+			$product=new product();
+			$isUnique=$product->isUniqueName($_POST['insert_pName']);
+			if($isUnique)
+			{
+				$arrErrors['isUnique']='this product name already exist';
+				$isValid=False;
+			}
+		}
 	}
 	if(isset($_POST['cNames_menu_edit']))
 	{
@@ -124,6 +135,7 @@ if(isset($_POST['insert_ok']))
 	}
 	else
 	{
+
 		$_SESSION['errors']=$arrErrors;
 	}
 	header("Location: adminProducts.php");

@@ -1,6 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
   session_start();
+  if(isset($_SESSION['user']))
+  {
+    if($_SESSION['user']==1)
+    {
   include '../../classes/category.php';
   include '../../classes/products.php';
   $category=new Category();
@@ -174,3 +178,11 @@
     </div> <!-- end of main_container -->
   </body>
 </html>
+<?php
+}
+else
+echo "only admin can access this page";
+}
+else
+echo "only admin can access this page";
+?>

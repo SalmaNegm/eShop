@@ -1,6 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
   session_start();
+  if(isset($_SESSION['user']))
+  {
+  	if($_SESSION['user']==1)
+  	{
   include '../../classes/products.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -42,6 +46,10 @@
                   <label class='control-label col-xs-3' style="color:<?php if(in_array('insert_pName', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Name</label>
                   <div class="col-xs-9">
                     <input type="text" name='insert_pName' class="form-control"/>
+                    <span class='error'><?php 
+                    if(isset($_SESSION['errors']['isUnique']))
+                    	echo $_SESSION['errors']['isUnique'];
+                    ?></span>
                   </div>
                 </div>
 
@@ -66,6 +74,7 @@
                   <label class='control-label col-xs-3' style="color:<?php if(in_array('scNames_menu_edit', $_SESSION['errors'])){echo 'red';}else{echo 'black';}?>">Subcategory</label>
                   <div class="col-xs-9">
                     <select id='scNames_menu_edit' class="form-control" name='scNames_menu_edit'></select>
+
                   </div>
                 </div>
 
@@ -122,4 +131,10 @@
 </html>
 <?php
   unset($_SESSION['errors']);
+}
+else
+echo "only admin can access this page";
+}
+else
+echo "only admin can access this page";
 ?>

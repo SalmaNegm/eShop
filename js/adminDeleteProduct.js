@@ -38,10 +38,10 @@ $(function(){
 		});
 		if(isValid)
 		{
-		d={};
-		d.selected_pID=$('#browsers option[value='+$('#tt').val()+']').attr('data-pid');
-		// alert(d.selected_pID);
-		$.ajax
+			d={};
+			d.selected_pID=$('#browsers option[value='+$('#tt').val()+']').attr('data-pid');
+			// alert(d.selected_pID);
+			$.ajax
 			({
 				url: "../admin/adminDeleteProduct_server.php",
 				type: 'GET',

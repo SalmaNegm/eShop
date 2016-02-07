@@ -37,6 +37,19 @@ if(isset($_POST['edit_ok']))
 			$isValid=False;
 			$arrErrors[]='insert_pName';
 		}
+		else
+		{	
+			$product=new product($_POST['pID']);
+			if($_POST['insert_pName'] != $product->pName)
+			{
+				$isExist=$product->isUniqueName($_POST['insert_pName']);
+				if($isExist)
+				{
+					$arrErrors['isUnique']='this product name already exist';
+					$isValid=False;
+				}
+			}
+		}
 	}
 	if(isset($_POST['cNames_menu_edit']))
 	{
@@ -83,8 +96,7 @@ if(isset($_POST['edit_ok']))
 		if(empty($_POST['insert_pQuantity']))
 		{
 			
-			$isValid=False;
-			$arrErrors[]='insert_pQuantity';
+			$_POST['insert_pQuantity']=0;
 		}
 	}
 	// if(isset($_FILES['insert_pImage']))
